@@ -1,40 +1,13 @@
-import ReactDOM from "react-dom";
+import { root, game } from "./Game.js";
+import JoinScreen from "./screens/Join.js";
+import WaitingScreen from "./screens/Waiting.js";
 
-/**
- *
- * @param {Response} response
- */
-function getJoinResponse(response) {
-  if (response.status == 201) {
-    alert("Successfully joined game!");
-  } else if (response.status == 409) {
-    alert("This username is already taken!");
+export default function App() {
+  if (!game.joined) {
+    return <JoinScreen />;
+  } else {
+    return <WaitingScreen />;
   }
 }
 
-function join() {
-  const username = document.getElementById("txtUsername").value;
-  const ip = document.getElementById("txtIp").value;
-  const url = `http://${ip}:9669/join?username=${username}`;
-  fetch(url)
-    .then((data) => getJoinResponse(data))
-    .catch((err) => alert(err));
-}
-
-export default function App() {
-  return (
-    <>
-      <label>Enter the ip of the host</label>
-      <input id="txtIp" type="text" placeholder="192.168.?.?" />
-      <br />
-
-      <label>Pick a username</label>
-      <input id="txtUsername" type="text" placeholder="Username" />
-      <button type="button" onClick={join}>
-        Join
-      </button>
-    </>
-  );
-}
-
-ReactDOM.render(<App />, document.getElementById("root"));
+root.render(<App />);
