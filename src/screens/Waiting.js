@@ -17,32 +17,26 @@ function updateWaitMessage(message) {
   displayMessage(message);
 }
 
-const sleep = (milliseconds) => {
-  return new Promise((resolve) => setTimeout(resolve, milliseconds));
-};
-
 function checkIfStarted() {
-  sleep(1000).then(() => {
-    const url = `http://${game.ip}:9669/blackjack`;
+  const url = `http://${game.ip}:${game.port}/blackjack`;
 
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data.started);
-        console.log(data);
-        console.log(data.message);
-        if (data.started) {
-          displayMessage("The game has started");
-          root.render(game.message);
-          clearInterval(interval);
-        } else {
-          updateWaitMessage(data.message);
-        }
-      })
-      .catch((err) => {
-        displayMessage(err.message);
-      });
-  });
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data.started);
+      console.log(data);
+      console.log(data.message);
+      if (data.started) {
+        displayMessage("The game has started");
+        root.render(game.message);
+        clearInterval(interval);
+      } else {
+        updateWaitMessage(data.message);
+      }
+    })
+    .catch((err) => {
+      displayMessage(err.message);
+    });
 }
 
 function tick() {

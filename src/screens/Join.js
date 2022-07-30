@@ -4,7 +4,7 @@ import WaitingScreen from "./Waiting";
 function join() {
   game.username = document.getElementById("txtUsername").value;
   game.ip = document.getElementById("txtIp").value;
-  const url = `http://${game.ip}:9669/join?username=${game.username}`;
+  const url = `http://${game.ip}:${game.port}/join?username=${game.username}`;
   fetch(url)
     .then((data) => getJoinResponse(data))
     .catch((err) => alert(err));
