@@ -1,4 +1,5 @@
 import { game, root } from "../Game";
+import Blackjack from "./Blackjack";
 
 var numberOfDots = 0;
 
@@ -23,12 +24,9 @@ function checkIfStarted() {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data.started);
       console.log(data);
-      console.log(data.message);
       if (data.started) {
-        displayMessage("The game has started");
-        root.render(game.message);
+        root.render(<Blackjack startingCards={data.cards} />);
         clearInterval(interval);
       } else {
         updateWaitMessage(data.message);
@@ -45,7 +43,6 @@ function tick() {
 }
 
 export default function WaitingScreen() {
-  tick();
   interval = setInterval(tick, 1000);
 }
 
