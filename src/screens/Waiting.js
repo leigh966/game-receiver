@@ -1,5 +1,6 @@
 import { game, root } from "../Game";
 import Blackjack from "./Blackjack";
+import JoinScreen from "./Join";
 
 var numberOfDots = 0;
 
@@ -19,14 +20,22 @@ function updateWaitMessage(message) {
 }
 
 function checkIfStarted() {
-  const url = `http://${game.ip}:${game.port}/blackjack`;
+  const url = `http://${game.ip}:${game.port}/blackjack?username=${game.username}`;
 
   fetch(url)
-    .then((response) => response.json())
+    .then((response) => {
+      if (response.status == 401) {
+        root.render(<JoinScreen />);
+        clearInterval(interval);
+      } else return response.json();
+    })
     .then((data) => {
+      if (!data) return;
       console.log(data);
       if (data.started) {
-        root.render(<Blackjack startingCards={data.cards} />);
+        game.cards = data.cards;
+        game.options = data.options;
+        root.render(<Blackjack />);
         clearInterval(interval);
       } else {
         updateWaitMessage(data.message);

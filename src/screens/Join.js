@@ -2,7 +2,13 @@ import { game, root } from "../Game";
 import WaitingScreen from "./Waiting";
 
 function join() {
-  game.username = document.getElementById("txtUsername").value;
+  game.username = encodeURIComponent(
+    document.getElementById("txtUsername").value
+  );
+  if (game.username === "") {
+    alert("Please input a username");
+    return;
+  }
   game.ip = document.getElementById("txtIp").value;
   const url = `http://${game.ip}:${game.port}/join?username=${game.username}`;
   fetch(url)
@@ -15,12 +21,14 @@ function join() {
  * @param {Response} response
  */
 function getJoinResponse(response) {
-  if (response.status == 201) {
+  if (response.status === 201) {
     alert("Successfully joined game!");
     game.joined = true;
     root.render(<WaitingScreen />);
-  } else if (response.status == 409) {
+  } else if (response.status === 409) {
     alert("This username is already taken!");
+  } else if (response.status === 429) {
+    alert("The game is full!");
   }
 }
 

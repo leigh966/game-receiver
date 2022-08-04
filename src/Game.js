@@ -6,6 +6,7 @@ class Game {
   started = false;
   message = "";
   cards = [];
+  options = [];
   joined = false;
   port = 9669;
 }
