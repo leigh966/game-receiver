@@ -35,18 +35,17 @@ export default class HostFinder extends React.Component {
 
   async marco() {
     console.log("marco run");
+    this.searching = true;
+    this.clientSempahore = new Semaphore(MARCO_BATCH_SIZE);
+
+    game.rememberedAddresses.forEach((ip) => {
+      this.sendMarcoToIp(ip);
+    });
+
     const STARTING_SUBNET = 0;
     const STARTING_HOST = 2;
     const MAX_SUBNET = 1;
     const MAX_HOST = 255;
-
-    game.rememberedAddresses.forEach((ip) => {
-      this.sendMarcoToIp(ip);
-      this.searching = true;
-
-      this.clientSempahore = new Semaphore(MARCO_BATCH_SIZE);
-    });
-
     for (let subnet = STARTING_SUBNET; subnet <= MAX_SUBNET; subnet++) {
       for (let host = STARTING_HOST; host <= MAX_HOST; host++) {
         let ip = this.getIp(subnet, host);
