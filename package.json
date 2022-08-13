@@ -1,5 +1,6 @@
 {
   "name": "game-receiver",
+  "homepage": "https://leigh966.github.io/game-receiver",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -35,5 +36,7 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+    
   }
+  
 }
