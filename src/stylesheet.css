@@ -1,0 +1,108 @@
+:root {
+  --searchingGifWidth: 30%;
+  --searchingGifHeight: 30%;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  font-size: 100%;
+}
+
+@media only screen and (max-device-width: 480px) {
+  html {
+    font-size: 80%;
+  }
+}
+
+#Blackjack {
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
+
+img.cards {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  margin-right: -25%;
+}
+
+button.option {
+  width: 50%;
+  margin-left: 20%;
+  margin-right: auto;
+  margin-top: 2px;
+}
+
+#JoinScreen {
+  width: 100%;
+  /* border: 1px solid black; */
+  overflow: hidden; /* will contain if #first is longer than #second */
+}
+
+#HostFinder {
+  width: 50%;
+  float: left; /* add this */
+  /* border: 1px solid red; */
+}
+
+#ManualJoin {
+  /* border: 1px solid green; */
+  overflow: hidden; /* if you don't want #second to wrap below #first */
+  width: 40%;
+  border-left: 0.5px outset rgb(155, 154, 154);
+  padding-left: 5%;
+  padding-bottom: 10%;
+  padding-top: 0px;
+  margin-top: 3%;
+}
+
+#txtIp {
+  width: 60%;
+  margin-left: 20%;
+}
+
+#SearchingGif {
+  width: var(--searchingGifWidth);
+  overflow: hidden; /* if you don't want #second to wrap below #first */
+  padding-bottom: 30px;
+  padding-top: 4%;
+}
+
+.foundServer {
+  width: var(--searchingGifWidth);
+  padding-top: var(--searchingGifHeight);
+  margin-right: 1%;
+  float: left;
+  font-size: 0.8rem;
+  overflow: hidden; /* if you don't want #second to wrap below #first */
+}
+
+h3.joinDivHeading {
+  margin-top: 0px;
+  font-size: 1.2rem;
+}
+
+#UsernameSelectDiv {
+  /* border: 1px solid purple; */
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+}
+
+#UsernameSelectDiv label {
+  padding-right: 5%;
+}
+
+#ManualJoin label {
+  margin-left: 20%;
+}
+
+#btnJoin {
+  margin-left: 45%;
+  margin-top: 5px;
+}

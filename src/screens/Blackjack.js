@@ -1,4 +1,5 @@
 import { game, root } from "../Game";
+
 var interval;
 
 function tick() {
@@ -38,14 +39,17 @@ export default function Blackjack() {
   let elements = [];
   for (let index = 0; index < game.cards.length; index++) {
     elements.push(
-      <img src={`./cards/${game.cards[index]}.png`} width={"30%"} />
+      <img src={`./cards/${game.cards[index]}.png`} className="cards" />
     );
   }
 
   for (let index = 0; index < game.options.length; index++) {
+    elements.push(<br />);
     let option = game.options[index];
     elements.push(
-      <button onClick={() => chooseOption(index)}>{option}</button>
+      <button onClick={() => chooseOption(index)} className="option">
+        {option}
+      </button>
     );
   }
 
@@ -53,5 +57,5 @@ export default function Blackjack() {
     interval = setInterval(tick, 1000); // keep checking if it is my turn
   }
 
-  return elements;
+  return <div id="Blackjack">{elements}</div>;
 }

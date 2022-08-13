@@ -1,49 +1,57 @@
 import { game, root } from "../Game";
+import { useState } from "react";
+import HostFinder from "../components/HostFinder";
+import ManualJoin from "../components/ManualJoin";
 import WaitingScreen from "./Waiting";
 
-function join() {
-  game.username = encodeURIComponent(
-    document.getElementById("txtUsername").value
-  );
-  if (game.username === "") {
-    alert("Please input a username");
-    return;
-  }
-  game.ip = document.getElementById("txtIp").value;
-  const url = `http://${game.ip}:${game.port}/join?username=${game.username}`;
-  fetch(url)
-    .then((data) => getJoinResponse(data))
-    .catch((err) => alert(err));
+const PREVIOUS_USERNAME_KEY = "unameLast";
+let storedUsername = localStorage.getItem(PREVIOUS_USERNAME_KEY);
+
+const IP_KEY = "prevIps";
+const STORED_IP_JSON = localStorage.getItem(IP_KEY);
+game.rememberedAddresses = new Set(JSON.parse(STORED_IP_JSON));
+
+export function onJoined() {
+  game.rememberedAddresses.add(game.ip);
+  const STRING_TO_STORE = JSON.stringify(Array.from(game.rememberedAddresses));
+  localStorage.setItem(IP_KEY, STRING_TO_STORE);
+  localStorage.setItem(PREVIOUS_USERNAME_KEY, game.username);
+  alert("Successfully joined game!");
+  game.joined = true;
+  root.render(<WaitingScreen />);
 }
 
-/**
- *
- * @param {Response} response
- */
-function getJoinResponse(response) {
-  if (response.status === 201) {
-    alert("Successfully joined game!");
-    game.joined = true;
-    root.render(<WaitingScreen />);
-  } else if (response.status === 409) {
-    alert("This username is already taken!");
-  } else if (response.status === 429) {
-    alert("The game is full!");
-  }
-}
-
-export default function JoinScreen() {
+function UsernameSelection() {
+  const [username, setUsername] = useState("");
   return (
-    <>
-      <label>Enter the ip of the host</label>
-      <input id="txtIp" type="text" placeholder="192.168.?.?" />
+    <div id="UsernameSelectDiv">
+      <label>Pick a username: </label>
       <br />
-
-      <label>Pick a username</label>
-      <input id="txtUsername" type="text" placeholder="Username" />
-      <button type="button" onClick={join}>
-        Join
-      </button>
-    </>
+      <input
+        id="txtUsername"
+        type="text"
+        placeholder="Username"
+        value={storedUsername ? storedUsername : username}
+        onChange={(event) => {
+          storedUsername = null;
+          setUsername(event.target.value);
+        }}
+      />
+    </div>
   );
+}
+
+function JoinScreen() {
+  return (
+    <div id="JoinScreen">
+      <UsernameSelection />
+      <br />
+      <HostFinder />
+      <ManualJoin />
+    </div>
+  );
+}
+let first = true;
+export default function JoinScreenStart() {
+  return <JoinScreen />;
 }

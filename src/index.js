@@ -1,10 +1,11 @@
 import { root, game } from "./Game.js";
-import JoinScreen from "./screens/Join.js";
+import JoinScreenStart from "./screens/Join.js";
 import WaitingScreen from "./screens/Waiting.js";
+import "./stylesheet.css";
 
 export default function App() {
   if (!game.joined) {
-    return <JoinScreen />;
+    return <JoinScreenStart />;
   } else {
     return <WaitingScreen />;
   }
