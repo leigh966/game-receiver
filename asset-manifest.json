@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/game-receiver/static/css/main.dbb54c3e.css",
+    "main.js": "/game-receiver/static/js/main.14cf32ca.js",
+    "index.html": "/game-receiver/index.html",
+    "main.dbb54c3e.css.map": "/game-receiver/static/css/main.dbb54c3e.css.map",
+    "main.14cf32ca.js.map": "/game-receiver/static/js/main.14cf32ca.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dbb54c3e.css",
+    "static/js/main.14cf32ca.js"
+  ]
+}
