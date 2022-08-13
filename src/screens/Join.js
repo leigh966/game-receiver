@@ -30,6 +30,7 @@ function UsernameSelection() {
       <input
         id="txtUsername"
         type="text"
+        autoComplete="off"
         placeholder="Username"
         value={storedUsername ? storedUsername : username}
         onChange={(event) => {

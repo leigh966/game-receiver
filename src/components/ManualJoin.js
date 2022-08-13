@@ -36,7 +36,12 @@ export default function ManualJoin() {
       <h3 className="joinDivHeading">or Enter manually:</h3>
       <label>Enter the ip of the host:</label>
       <br />
-      <input id="txtIp" type="text" placeholder="xxx.xxx.xxx.xxx" />
+      <input
+        id="txtIp"
+        type="text"
+        placeholder="xxx.xxx.xxx.xxx"
+        autoComplete="off"
+      />
       <br />
       <button id="btnJoin" type="button" onClick={join}>
         Join
