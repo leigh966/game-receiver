@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/game-receiver/static/css/main.dbb54c3e.css",
-    "main.js": "/game-receiver/static/js/main.d8886294.js",
+    "main.js": "/game-receiver/static/js/main.4c9f8a03.js",
     "index.html": "/game-receiver/index.html",
     "main.dbb54c3e.css.map": "/game-receiver/static/css/main.dbb54c3e.css.map",
-    "main.d8886294.js.map": "/game-receiver/static/js/main.d8886294.js.map"
+    "main.4c9f8a03.js.map": "/game-receiver/static/js/main.4c9f8a03.js.map"
   },
   "entrypoints": [
     "static/css/main.dbb54c3e.css",
-    "static/js/main.d8886294.js"
+    "static/js/main.4c9f8a03.js"
   ]
 }
